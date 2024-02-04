@@ -28800,9 +28800,6 @@ async function run() {
       const payload = import_github.default.context.payload;
       const commits = payload.commits;
 
-      ae("hogehogehoge");
-      ae(commits);
-
       const latestCommitSha = payload.commits[payload.commits.length - 1].id;
       const latestCommit = await octokit.request("GET /repos/{owner}/{repo}/commits/{ref}", {
         owner,
@@ -28814,14 +28811,15 @@ async function run() {
       const commitTitle = commitMessageLines[0].trim();
       const commitDescription = commitMessageLines.slice(1).join('\n').trim();
 
-      ae(commitTitle);
-      ae(commitDescription);
+      ce("last commitTitle and commitDescription");
+      ce(commitTitle);
+      ce(commitDescription);
 
       if (commitTitle && commitDescription) {
-        ae("with commit msg .end ");
+        ce("with commit Title and commit Description ");
         return;
       }
-      ae("no commitDescription. genarate commitDescription");
+      ce("no commitDescription. genarate commitDescription");
 
 
 
