@@ -28800,7 +28800,13 @@ async function run() {
       const payload = import_github.default.context.payload;
       const commits = payload.commits;
 
+      ce(commits.message.trim());
+
+
       for (const commit of commits) {
+        ce("------");
+        ce(commit.message.trim());
+        ce("------");
         // コミットメッセージが既に存在する場合はスキップ
         if (commit.message && commit.message.trim() !== '') {
           ce("with commti msg");
