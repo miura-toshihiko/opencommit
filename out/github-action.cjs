@@ -28858,7 +28858,7 @@ async function run() {
       ce(`Title: ${commitTitle}`);
       ce(`Description: ${commitDescription}`);
 
-      if ((isCommitTitleInappropriate(commitTitle) || isCommitDescriptionInappropriate(commitDescription))  {
+      if (isCommitTitleInappropriate(commitTitle) || isCommitDescriptionInappropriate(commitDescription)) {
         ce("Inappropriate commit title or description detected. Starting message improvement.");
 
       } else {
