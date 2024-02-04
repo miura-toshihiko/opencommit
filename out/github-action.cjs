@@ -28814,8 +28814,8 @@ async function run() {
       const commitTitle = commitMessageLines[0].trim();
       const commitDescription = commitMessageLines.slice(1).join('\n').trim();
 
-      as(commitTitle);
-      as(commitDescription);
+      ae(commitTitle);
+      ae(commitDescription);
 
       if (commitTitle && commitDescription) {
         ae("with commit msg .end ");
