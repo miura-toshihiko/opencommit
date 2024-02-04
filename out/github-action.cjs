@@ -28794,10 +28794,6 @@ async function improveCommitMessages(commitsToImprove) {
 async function run() {
   ae("OpenCommit \u2014 improving lame commit messages");
 
-  ae("hogehogehoge");
-  ae("hogehogehoge");
-  ae("OpenCommit \u2014 improving lame commit messages");
-
   try {
     if (import_github.default.context.eventName === "push") {
       ce(`Processing commits in a Push event`);
@@ -28813,14 +28809,20 @@ async function run() {
         repo,
         ref: latestCommitSha
       });
-      ae(latestCommit);
 
-      // 最新のコミットにメッセージがある場合、処理を終了
-      if (latestCommit.data.commit.message && latestCommit.data.commit.message.trim() !== '') {
+      const commitMessageLines = latestCommit.data.commit.message.split('\n');
+      const commitTitle = commitMessageLines[0].trim();
+      const commitDescription = commitMessageLines.slice(1).join('\n').trim();
+
+      as(commitTitle);
+      as(commitDescription);
+
+      if (commitTitle && commitDescription) {
         ae("with commit msg .end ");
-
         return;
       }
+      ae("no commitDescription. genarate commitDescription");
+
 
 
       if (payload.pusher.email)
