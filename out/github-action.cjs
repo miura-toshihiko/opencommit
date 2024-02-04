@@ -28807,6 +28807,21 @@ async function run() {
       ae("hogehogehoge");
       ae(commits);
 
+      const latestCommitSha = payload.commits[payload.commits.length - 1].id;
+      const latestCommit = await octokit.request("GET /repos/{owner}/{repo}/commits/{ref}", {
+        owner,
+        repo,
+        ref: latestCommitSha
+      });
+      ae(latestCommit);
+
+      // 最新のコミットにメッセージがある場合、処理を終了
+      if (latestCommit.data.commit.message && latestCommit.data.commit.message.trim() !== '') {
+        ae("with commit msg .end ");
+
+        return;
+      }
+
 
       if (payload.pusher.email)
         await import_exec.default.exec("git", ["config", "user.email", payload.pusher.email]);
