@@ -28822,14 +28822,16 @@ async function improveCommitMessages(commitsToImprove) {
 
 
 
+config2?.OCO_INVALID_COMMIT_DESCRIPTION_REGEX
 
-function isCommitTitleInappropriate(commitTitle, regexPattern = defaultTitleRegexPattern) {
-  const regex = new RegExp(regexPattern);
+
+function isCommitTitleInappropriate(commitTitle) {
+  const regex = new RegExp(config2?.OCO_INVALID_COMMIT_TITLE_REGEX);
   return regex.test(commitTitle);
 }
 
-function isCommitDescriptionInappropriate(commitDescription, regexPattern = defaultDescriptionRegexPattern) {
-  const regex = new RegExp(regexPattern);
+function isCommitDescriptionInappropriate(commitDescription) {
+  const regex = new RegExp(config2?.OCO_INVALID_COMMIT_DESCRIPTION_REGEX);
   return regex.test(commitDescription);
 }
 
